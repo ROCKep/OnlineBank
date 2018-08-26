@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru" th:fragment="layout (title, content)" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:replace="${title}">Онлайн банк</title>
+    <link rel="stylesheet" th:href="@{/public/css/bootstrap.min.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div class="container">
+    <div th:replace="${content}">
+        <p>Layout content</p>
+    </div>
+</div>
+
+<script th:src="@{/public/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/public/js/bootstrap.min.js}"></script>
+</body>
+</html>

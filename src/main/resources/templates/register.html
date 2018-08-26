@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html th:replace="~{layout.html :: layout(~{::title}, ~{::#content})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Регистрация</title>
+</head>
+<body>
+<div id="content">
+
+    <h1>Регистрация</h1>
+
+    <div class="alert alert-danger" th:if="${message}">
+        <p th:text="${message}">Ошибка</p>
+    </div>
+
+    <form action="" method="post" th:action="@{/register}" th:object="${clientDto}">
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('lastName')}? 'has-error'">
+            <label for="lastName" class="control-label">Фамилия</label>
+            <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+            <span class="help-block" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Неправильная фамилия</span>
+        </div>
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('firstName')}? 'has-error'">
+            <label for="firstName" class="control-label">Имя</label>
+            <input type="text" class="form-control" id="firstName" th:field="*{firstName}">
+            <span class="help-block" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Неправильное имя</span>
+        </div>
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('middleName')}? 'has-error'">
+            <label for="middleName" class="control-label">Отчество</label>
+            <input type="text" class="form-control" id="middleName" th:field="*{middleName}">
+            <span class="help-block" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">Неправильное отчество</span>
+        </div>
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('address')}? 'has-error'">
+            <label for="address" class="control-label">Адрес</label>
+            <input type="text" class="form-control" id="address" th:field="*{address}">
+            <span class="help-block" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Неправильный адрес</span>
+        </div>
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('dob')}? 'has-error'">
+            <label for="dob" class="control-label">Дата рождения</label>
+            <input type="date" class="form-control" id="dob" th:field="*{dob}">
+            <span class="help-block" th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}">Неправильная дата рождения</span>
+        </div>
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('passportNum')}? 'has-error'">
+            <label for="passportNum" class="control-label">Номер паспорта</label>
+            <input type="text" class="form-control" id="passportNum" th:field="*{passportNum}">
+            <span class="help-block" th:if="${#fields.hasErrors('passportNum')}" th:errors="*{passportNum}">Неправильный номер паспорта</span>
+        </div>
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error'">
+            <label for="password" class="control-label">Пароль</label>
+            <input type="password" class="form-control" id="password" th:field="*{password}">
+            <span class="help-block" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Неправильный пароль</span>
+        </div>
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('matchingPassword') || #fields.hasErrors('global')}? 'has-error'">
+            <label for="matchingPassword" class="control-label">Подтверждение пароля</label>
+            <input type="password" class="form-control" id="matchingPassword" th:field="*{matchingPassword}">
+            <span class="help-block" th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}">Неправильное подтверждение пароля</span>
+            <span class="help-block" th:if="${#fields.hasErrors('global')}" th:errors="*{global}">Пароли не совпадают</span>
+        </div>
+
+        <div>
+            <input type="submit" class="btn btn-default" value="Войти">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

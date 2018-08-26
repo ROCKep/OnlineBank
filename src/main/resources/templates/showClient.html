@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html th:replace="~{layout.html :: layout(~{::title}, ~{::#content})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${client.fullName}">Пупкин Вася Иванович</title>
+</head>
+<body>
+<div id="content">
+    <h1>Клиент <span th:text="${client.fullName}">Пупкин Вася Иванович</span></h1>
+
+    <form method="post" th:action="@{/logout}">
+        <input type="submit" value="Выйти">
+    </form>
+
+    <h2>Счета</h2>
+    <p><a href="#">Создать счет</a></p>
+    <ul class="list-unstyled">
+        <li th:each="account : ${client.accounts}">
+            <h3 th:text="|${account.id}: ${account.description}|">123: Описание</h3>
+            <p>₽ <span th:text="${account.money}">500.00</span></p>
+            <ul class="list-inline">
+                <li><a href="#">Пополнить</a></li>
+                <li><a href="#">Снять</a></li>
+                <li><a href="#">Перевести</a></li>
+                <li><a href="#">Заблокировать</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
