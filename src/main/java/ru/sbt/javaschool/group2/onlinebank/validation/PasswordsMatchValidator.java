@@ -1,6 +1,6 @@
 package ru.sbt.javaschool.group2.onlinebank.validation;
 
-import ru.sbt.javaschool.group2.onlinebank.client.ClientDto;
+import ru.sbt.javaschool.group2.onlinebank.client.ClientForm;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -12,7 +12,7 @@ public class PasswordsMatchValidator implements ConstraintValidator<PasswordsMat
    }
 
    public boolean isValid(Object obj, ConstraintValidatorContext context) {
-       ClientDto clientDto = (ClientDto) obj;
-       return Objects.equals(clientDto.getPassword(), clientDto.getMatchingPassword());
+       ClientForm clientForm = (ClientForm) obj;
+       return Objects.equals(clientForm.getPassword(), clientForm.getMatchingPassword());
    }
 }

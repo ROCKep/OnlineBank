@@ -3,7 +3,6 @@ package ru.sbt.javaschool.group2.onlinebank.client;
 import ru.sbt.javaschool.group2.onlinebank.account.Account;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,30 +26,11 @@ public class Client {
     @Column(name = "middle_name")
     private String middleName;
 
-    private String address;
-
-    private LocalDate dob;
-
     private String password;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "client")
     private Set<Account> accounts = new HashSet<>();
 
-    public Client() {}
-
-    public Client(String passportNum, String lastName, String firstName, String middleName, String address, LocalDate dob, String password) {
-        this.passportNum = passportNum;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.address = address;
-        this.dob = dob;
-        this.password = password;
-    }
-
-    public Client(String passportNum, String lastName, String firstName, String password) {
-        this(passportNum, lastName, firstName, null, null, null, password);
-    }
 
     public Long getId() {
         return id;
@@ -96,28 +76,22 @@ public class Client {
         this.passportNum = passportNum;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    protected Client() {}
+
+    public Client(String passportNum, String lastName, String firstName, String middleName, String password) {
+        setPassportNum(passportNum);
+        setLastName(lastName);
+        setFirstName(firstName);
+        setMiddleName(middleName);
+        setPassword(password);
     }
 
     public void addAccount(Account account) {

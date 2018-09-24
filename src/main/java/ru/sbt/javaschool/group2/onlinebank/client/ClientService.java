@@ -1,8 +1,10 @@
 package ru.sbt.javaschool.group2.onlinebank.client;
 
-import java.util.Optional;
+import ru.sbt.javaschool.group2.onlinebank.account.AccountForm;
+
 
 public interface ClientService {
-    Optional<Client> findClientByPassportNum(String passportNum);
-    void saveClient(ClientDto clientDto);
+    Client getClient(String passportNum);
+    void saveClient(ClientForm clientForm);
+    void saveAccount(String passportNum, AccountForm accountForm);
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html th:replace="~{layout.html :: layout(~{::title}, ~{::#content})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание счета</title>
+</head>
+<body>
+<div id="content">
+
+    <h1>Создание счета</h1>
+
+    <div class="alert alert-danger" th:if="${message}">
+        <p th:text="${message}">Ошибка</p>
+    </div>
+
+    <form method="post" th:action="@{/client/accounts/create}" th:object="${accountForm}">
+        <div class="form-group" th:classappend="${#fields.hasErrors('description')}? 'has-error'">
+            <label for="description" class="control-label">Описание</label>
+            <input type="text" class="form-control" id="description" th:field="*{description}">
+            <span class="help-block" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Неправильное описание</span>
+        </div>
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('money')}? 'has-error'">
+            <label for="money" class="control-label">Начальная сумма</label>
+            <input type="text" class="form-control" id="money" th:field="*{money}">
+            <span class="help-block" th:if="${#fields.hasErrors('money')}" th:errors="*{money}">Неправильная сумма</span>
+        </div>
+
+        <div>
+            <input type="submit" class="btn btn-default" value="Создать">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

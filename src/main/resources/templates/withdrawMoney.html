@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html th:replace="~{layout.html :: layout(~{::title}, ~{::#content})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Снятие денег</title>
+</head>
+<body>
+<div id="content">
+
+    <h1>Снятие денег</h1>
+
+    <div class="alert alert-danger" th:if="${message}">
+        <p th:text="${message}">Ошибка</p>
+    </div>
+
+    <form method="post" th:action="@{/account/{accountNum}/withdraw(accountNum=${account.number})}" th:object="${moneyForm}">
+        <div class="form-group" th:classappend="${#fields.hasErrors('sum')}? 'has-error'">
+            <label for="sum" class="control-label">Сумма снятия</label>
+            <input type="text" class="form-control" id="sum" th:field="*{sum}">
+            <span class="help-block" th:if="${#fields.hasErrors('sum')}" th:errors="*{sum}">Неправильная сумма</span>
+        </div>
+
+        <div>
+            <input type="submit" class="btn btn-default" value="Снять">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

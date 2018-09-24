@@ -12,16 +12,16 @@
     </form>
 
     <h2>Счета</h2>
-    <p><a href="#">Создать счет</a></p>
+    <p><a th:href="@{/client/accounts/create}">Создать счет</a></p>
     <ul class="list-unstyled">
         <li th:each="account : ${client.accounts}">
-            <h3 th:text="|${account.id}: ${account.description}|">123: Описание</h3>
+            <h3 th:text="|${account.number}: ${account.description}|">123: Описание</h3>
             <p>₽ <span th:text="${account.money}">500.00</span></p>
             <ul class="list-inline">
-                <li><a href="#">Пополнить</a></li>
-                <li><a href="#">Снять</a></li>
-                <li><a href="#">Перевести</a></li>
-                <li><a href="#">Заблокировать</a></li>
+                <li><a th:href="@{/account/{accountNum}/add(accountNum=${account.number})}">Пополнить</a></li>
+                <li><a th:href="@{/account/{accountNum}/withdraw(accountNum=${account.number})}">Снять</a></li>
+                <li><a th:href="@{/account/{accountNum}/transfer(accountNum=${account.number})}">Перевести</a></li>
+                <!--<li><a th:href="@{/account/{accountNum}/download(accountNum=${account.number})}">Выгрузить</a></li>-->
             </ul>
         </li>
     </ul>

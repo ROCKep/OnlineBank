@@ -1,6 +1,7 @@
 package ru.sbt.javaschool.group2.onlinebank.client;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import ru.sbt.javaschool.group2.onlinebank.validation.Age;
 import ru.sbt.javaschool.group2.onlinebank.validation.PasswordsMatch;
 
 import javax.validation.constraints.NotNull;
@@ -10,7 +11,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @PasswordsMatch
-public class ClientDto {
+public class ClientForm {
     @NotNull
     @Size(max = 50)
     private String lastName;
@@ -26,12 +27,11 @@ public class ClientDto {
     @Pattern(regexp = "^\\d{10}$")
     private String passportNum;
 
-    @Size(max = 100)
-    private String address;
-
+    @NotNull
     @Past
+    @Age(min = 18)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate dob;
+    private LocalDate dateOfBirth;
 
     @NotNull
     @Size(min = 6, max = 50)
@@ -72,20 +72,12 @@ public class ClientDto {
         this.passportNum = passportNum;
     }
 
-    public String getAddress() {
-        return address;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getPassword() {

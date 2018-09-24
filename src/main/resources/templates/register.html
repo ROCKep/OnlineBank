@@ -12,7 +12,7 @@
         <p th:text="${message}">Ошибка</p>
     </div>
 
-    <form action="" method="post" th:action="@{/register}" th:object="${clientDto}">
+    <form method="post" th:action="@{/register}" th:object="${clientForm}">
 
         <div class="form-group" th:classappend="${#fields.hasErrors('lastName')}? 'has-error'">
             <label for="lastName" class="control-label">Фамилия</label>
@@ -32,16 +32,10 @@
             <span class="help-block" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">Неправильное отчество</span>
         </div>
 
-        <div class="form-group" th:classappend="${#fields.hasErrors('address')}? 'has-error'">
-            <label for="address" class="control-label">Адрес</label>
-            <input type="text" class="form-control" id="address" th:field="*{address}">
-            <span class="help-block" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Неправильный адрес</span>
-        </div>
-
-        <div class="form-group" th:classappend="${#fields.hasErrors('dob')}? 'has-error'">
-            <label for="dob" class="control-label">Дата рождения</label>
-            <input type="date" class="form-control" id="dob" th:field="*{dob}">
-            <span class="help-block" th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}">Неправильная дата рождения</span>
+        <div class="form-group" th:classappend="${#fields.hasErrors('dateOfBirth')}? 'has-error'">
+            <label for="dateOfBirth" class="control-label">Дата рождения</label>
+            <input type="date" class="form-control" id="dateOfBirth" th:field="*{dateOfBirth}">
+            <span class="help-block" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Неправильная дата рождения</span>
         </div>
 
         <div class="form-group" th:classappend="${#fields.hasErrors('passportNum')}? 'has-error'">
@@ -64,7 +58,7 @@
         </div>
 
         <div>
-            <input type="submit" class="btn btn-default" value="Войти">
+            <input type="submit" class="btn btn-default" value="Зарегистрироваться">
         </div>
     </form>
 </div>

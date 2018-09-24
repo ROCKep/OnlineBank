@@ -1,0 +1,8 @@
+[
+  {
+    "num": "10",
+    "name": "Банк группы 1",
+    "api": "https://bankonline.azurewebsites.net/api/transfer/",
+    "key": "hello"
+  }
+]
